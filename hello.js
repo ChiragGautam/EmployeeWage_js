@@ -15,9 +15,13 @@ function getWorkingHours(empCheck) {
     }
 }
 
-const empCheck = Math.floor(Math.random() * 3); // 0, 1, 2
-const empHours = getWorkingHours(empCheck);
-const empWage = empHours * WAGE_PER_HOUR;
+function calculateDailyWage(empCheck) {
+    let empHours = getWorkingHours(empCheck);
+    return empHours * WAGE_PER_HOUR;
+}
 
-console.log(`Employee worked for ${empHours} hours`);
+const empCheck = Math.floor(Math.random() * 3);
+const empWage = calculateDailyWage(empCheck);
+
+console.log(`Employee worked for ${getWorkingHours(empCheck)} hours`);
 console.log(`Daily Employee Wage: $${empWage}`);
