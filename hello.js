@@ -1,6 +1,7 @@
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
 const WAGE_PER_HOUR = 20;
+const WORKING_DAYS_IN_MONTH = 20;
 
 function getWorkingHours(empCheck) {
     switch (empCheck) {
@@ -20,8 +21,11 @@ function calculateDailyWage(empCheck) {
     return empHours * WAGE_PER_HOUR;
 }
 
-const empCheck = Math.floor(Math.random() * 3);
-const empWage = calculateDailyWage(empCheck);
+let totalEmpWage = 0;
+for (let day = 0; day < WORKING_DAYS_IN_MONTH; day++) {
+    let empCheck = Math.floor(Math.random() * 3);
+    let dailyWage = calculateDailyWage(empCheck);
+    totalEmpWage += dailyWage;
+}
 
-console.log(`Employee worked for ${getWorkingHours(empCheck)} hours`);
-console.log(`Daily Employee Wage: $${empWage}`);
+console.log(`Total Employee Wage for ${WORKING_DAYS_IN_MONTH} days: $${totalEmpWage}`);
