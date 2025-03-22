@@ -38,3 +38,18 @@ for (let [day, wage] of dayWiseWageMap) {
 
 console.log("\nTotal Wage from Map: $", totalWageFromMap);
 console.log("Total Working Days: ", totalWorkingDays);
+
+
+// UC10 - Create Object to store all employee details
+let empDetails = {
+    totalWorkingDays: totalWorkingDays,
+    totalEmpHrs: totalEmpHrs,
+    totalEmpWage: totalSalary,
+    dailyHrsAndWageArr: empDailyHrsAndWageArr,
+    toString() {
+        return `\nTotal Days: ${this.totalWorkingDays}, Total Hours: ${this.totalEmpHrs}, Total Wage: ${this.totalEmpWage}\n` +
+            this.dailyHrsAndWageArr.map(dailyData => dailyData.toString()).join('');
+    }
+};
+
+console.log("UC10 - Showing Complete Employee Details: " + empDetails.toString());
