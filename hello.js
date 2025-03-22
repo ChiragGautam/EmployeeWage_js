@@ -3,7 +3,8 @@ const PART_TIME_HOURS = 4;
 const WAGE_PER_HOUR = 20;
 const NUM_OF_WORKING_DAYS = 20;
 
-let dailyWageMap = new Map();
+let dayWiseWageMap = new Map(); // Day wise wage ke liye Map
+let totalWorkingDays = 0;
 
 function getWorkingHours() {
     let empCheck = Math.floor(Math.random() * 3);
@@ -17,18 +18,23 @@ function getWorkingHours() {
     }
 }
 
+// ✅ Daily Wage and Total Working Days ko Store karna
 for (let day = 1; day <= NUM_OF_WORKING_DAYS; day++) {
     let dailyHours = getWorkingHours();
     let dailyWage = dailyHours * WAGE_PER_HOUR;
-    dailyWageMap.set(day, dailyWage);
+
+    if (dailyHours > 0) totalWorkingDays++; // Absent ko count nahi karna
+    dayWiseWageMap.set(day, dailyWage);
 }
 
-// ✅ (a) Total Wage using Map
-let totalWageFromMap = Array.from(dailyWageMap.values()).reduce((total, wage) => total + wage, 0);
-console.log("Total Wage using Map: ", totalWageFromMap);
+// ✅ Total Wage using Map
+let totalWageFromMap = Array.from(dayWiseWageMap.values()).reduce((total, wage) => total + wage, 0);
 
-// ✅ (b) Day wise wage stored in Map
-console.log("Day Wise Wage:");
-for (let [day, wage] of dailyWageMap) {
+// ✅ Output:
+console.log("Day Wise Wage in Map:");
+for (let [day, wage] of dayWiseWageMap) {
     console.log(`Day ${day} -> $${wage}`);
 }
+
+console.log("\nTotal Wage from Map: $", totalWageFromMap);
+console.log("Total Working Days: ", totalWorkingDays);
